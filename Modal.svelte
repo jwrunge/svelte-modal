@@ -111,7 +111,7 @@
     </div>  <!-- end .modal, .backdrop -->
 {/if}
 
-<style lang='scss'>
+<style>
     .modal.modal-backdrop {
         position: fixed;
         top: 0; left: 0;
@@ -129,51 +129,53 @@
         width: 30rem; min-width: 0; max-width: 95%;
         overflow-y: hidden;
         box-sizing: border-box;
-        
-        &.modal-wide {
-            width: 60rem;
-        }
-
-        &.modal-full {
-            width: 95%;
-        }
-
-        .modal-closer {
-            cursor: pointer;
-            font-size: 2rem;
-            position: absolute;
-            top: .25rem;
-            &.modal-closer-right, &.modal-closer-top-right { right: .75rem; }
-            &.modal-closer-left, &.modal-closer-top-left { left: .75rem; }
-        }
-
-        .modal-load-container {
-            text-align: center;
-        }
-
-        .modal-load-icon {
-            display: block;
-            position: absolute;
-            &.modal-load-top-left { top: .5em; left: .5em; }
-            &.modal-load-top-right { top: .5em; right: .5em; }
-            &.modal-load-bottom-left { bottom: .5em; left: .5em; }
-            &.modal-load-bottom-right { bottom: .5em; right: .5em; }
-
-            &.modal-load-middle {
-                position: relative;
-                width: 100%;
-                text-align: center;
-                margin-bottom: .5em;
-                z-index: 1;
-            }
-        }
-
-        .modal-scroller {
-            max-height: 85vh;
-            overflow-y: auto;
-            width: 100%;
-        }
-
-        .modal-faded { opacity: .5; }
     }
+        
+    .modal .modal-inner.modal-wide {
+        width: 60rem;
+    }
+
+    .modal .modal-inner.modal-full {
+        width: 95%;
+    }
+
+    .modal .modal-inner .modal-closer {
+        cursor: pointer;
+        font-size: 2rem;
+        position: absolute;
+        top: .25rem;
+    }
+
+    .modal .modal-closer.modal-closer-right, .modal .modal-closer.modal-closer-top-right { right: .75rem; }
+    .modal .modal-closer.modal-closer-left, .modal .modal-closer.modal-closer-top-left { left: .75rem; }
+
+    .modal .modal-inner .modal-load-container {
+        text-align: center;
+    }
+
+    .modal .modal-inner .modal-load-icon {
+        display: block;
+        position: absolute;
+    }
+
+    .modal .modal-load-icon.modal-load-top-left { top: .5em; left: .5em; }
+    .modal .modal-load-icon.modal-load-top-right { top: .5em; right: .5em; }
+    .modal .modal-load-icon.modal-load-bottom-left { bottom: .5em; left: .5em; }
+    .modal .modal-load-icon.modal-load-bottom-right { bottom: .5em; right: .5em; }
+
+    .modal .modal-load-icon.modal-load-middle {
+        position: relative;
+        width: 100%;
+        text-align: center;
+        margin-bottom: .5em;
+        z-index: 1;
+    }
+
+    .modal .modal-inner .modal-scroller {
+        max-height: 85vh;
+        overflow-y: auto;
+        width: 100%;
+    }
+
+    .modal .modal-inner .modal-faded { opacity: .5; }
 </style>
