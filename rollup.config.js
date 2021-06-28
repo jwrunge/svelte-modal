@@ -8,7 +8,9 @@ import css from 'rollup-plugin-css-only'
 import serve from 'rollup-plugin-serve-proxy'
 import babel from "@rollup/plugin-babel"
 
-const writeFileSync = require('fs').writeFileSync
+const fs = require('fs')
+const writeFileSync = fs.writeFileSync
+const copyFileSync = fs.copyFileSync
 
 const prod = !process.env.ROLLUP_WATCH
 const babelSettings = {
@@ -70,5 +72,18 @@ export default [
         watch: {
             clearScreen: false
         }
+    },
+    {
+        input: 'src/svelte-test.js',
+        output: {
+            sourcemap: true,
+            file: './svelte-test.js',
+            name: "modal",
+            format: 'iife'
+        },
+        plugins: plugins("dist/", "", false),
     }
 ]
+
+//Copy Svelte file to dist directory
+copyFileSync("src/Modal.svelte", "./Modal.svelte")
