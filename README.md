@@ -5,6 +5,8 @@ This is an ***easy*** modal, written in [Svelte](https://svelte.dev/) but usable
 * Easily stylable with a minimum of CSS
 * Fun to play with
 
+Check out [the CodePen example for non-Svelte implementations](https://codepen.io/jwrunge/pen/wvdvVOa) and [the Svelte REPL for Svelte implementations](https://svelte.dev/repl/60b0d85b93894037b2efdd5753914ec9?version=3.38.3) for examples of how to implement Easy Modal!
+
 ## Contents
 1. [Development][1]
 2. [Installation][2]
@@ -181,6 +183,7 @@ Additional custom styling is super easy, and can be done in standard CSS in your
 
 |class                  |element                |
 |---                    |---                    |
+|.modal                 |The container `div`; the same element as `.modal-backgrop`.|
 |.modal-backdrop        |The modal background. A `flexbox`. Contains all other elements.|
 |.modal-inner           |The inner modal div. A simple, relatively-positioned `div`.|
 |.modal-scroller        |The scrollable content `div` for overflow modal content.|

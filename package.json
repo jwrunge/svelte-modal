@@ -1,6 +1,6 @@
 {
   "name": "@jwrunge/modal",
-  "version": "1.0.5",
+  "version": "1.0.6",
   "description": "A simple, configurable modal system with user inputs. Written in Svelte. Use it as a svelte component, your Node build system, or plain JavaScript!",
   "main": "dist/modal.js",
   "scripts": {
