@@ -22,7 +22,18 @@
 				bgclose: true,
 				heading: "Cool modal, man",
 				content: "<p>And it's so easy to use!</p>",
-				topoffset: "-10rem"
+				topoffset: "-10rem",
+				buttons: [
+					{
+						text: "Close me!",
+						class: "red",
+						event: "close"
+					},
+					{
+						text: "Alert me!",
+						event: "alert"
+					}
+				]
 			}
 		})
 
@@ -36,6 +47,10 @@
 			testModal.$set({
 				visible: false
 			})
+		})
+
+		testModal.$on("alert", function(){
+			alert("Alerted!")
 		})
 	</script>
 
@@ -59,6 +74,15 @@
             margin-bottom: .5rem;
             margin-top: .25rem;
         }
+
+		.modal .buttons {
+			text-align: center;
+		}
+
+		.modal .buttons .red {
+			background-color: red;
+			color: white;
+		}
 	</style>
 </body>
 </html>

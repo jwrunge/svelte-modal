@@ -40,9 +40,9 @@ With an NPM installation, the stylesheet can be found in the node_modules direct
 
 ### Direct links
 Download local copies of the code here:
-* GitHub JavaScript file: [modal.js](https://github.com/jwrunge/svelte-modal/blob/8ccb02f49ae62b0cfeb2800472767cd5d864ecda/dist/modal.js)
-* GitHub CSS file: [modalstyle.css](https://github.com/jwrunge/svelte-modal/blob/8ccb02f49ae62b0cfeb2800472767cd5d864ecda/dist/modalstyle.css)
-* GitHub Svelte file: [Modal.svelte]()
+* GitHub JavaScript file: [modal.js](https://github.com/jwrunge/svelte-modal/blob/main/dist/modal.js)
+* GitHub CSS file: [modalstyle.css](https://github.com/jwrunge/svelte-modal/blob/main/dist/modalstyle.css)
+* GitHub Svelte file: [Modal.svelte](https://github.com/jwrunge/svelte-modal/blob/main/dist/Modal.svelte)
 
 ## Implementation
 There are three ways to implement the modal:
@@ -64,7 +64,7 @@ Include the modal via `<script>` tag:
 <script src="node_modules/@jwrunge/modal/dist/modal.js">
 ```
 
-You can use the path to `modal.js` in your `node_modules` folder, the raw GitHub source linked above, or a local downloaded copy.
+You can use the path to `modal.js` in your `node_modules` folder or a local downloaded copy.
 
 You can now create a modal instance using `new modal()` -- see ["Instantiating"](#instantiating) below).
 
@@ -140,6 +140,7 @@ The following customization properties can be passed as props to the modal. Some
 |visible        |true                   |Intended for non-Svelte implementations. Sets whether the modal is visible (open) or invisible (closed).|
 |content        |""                     |Intended for non-Svelte implementations. Sets the content of the modal.|
 |heading        |""                     |Intended for non-Svelte implementations. Sets the heading of the modal.|
+|buttons        |[]                     |Intended primarily for non-Svelte implementations, where adding a button via the `content` prop may be difficulty. `buttons` takes an array of objects with the format `{text: "", class: "", event: ""}`, where `text` is the button text, `class` is a string list of classes that you want to apply to the button (for styling), and `event` is the name of an event the button will emit on click (which you can handle with `myModal.$on()`).|
 |closable       |true                   |Sets whether or not the modal can be closed. If it can, and the modal is not in a loading state, an 'x' icon will appear. Clicking the 'x' icon will emit a `close` event.|
 |bgclose        |false                  |Sets whether or not the modal will close if you click or tap on the darkened background. Modal must be set to `closable` and not in a loading state.|
 |closepos       |"modal-closer-right"   |Sets the position of the close icon. Can be "modal-closer-right" to position at the top-right, or "modal-closer-left" to position at the top-left.|
@@ -183,6 +184,7 @@ Additional custom styling is super easy, and can be done in standard CSS in your
 |.modal-backdrop        |The modal background. A `flexbox`. Contains all other elements.|
 |.modal-inner           |The inner modal div. A simple, relatively-positioned `div`.|
 |.modal-scroller        |The scrollable content `div` for overflow modal content.|
+|.buttons               |The `div` container of any buttons passed via the `buttons` prop.|
 |.modal-closer          |The close icon. Absolutely-positioned.|
 |.modal-load-icon       |The loading icon or text. Absolutely-positioned, unless `loadpos` is set to `modal-load-middle`.|
 |.modal-faded           |Content that is faded when the modal is in a loading state, if `fadeonload` is set.|
