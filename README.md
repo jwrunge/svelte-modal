@@ -45,7 +45,7 @@ Download local copies of the code here:
 * GitHub Svelte file: [Modal.svelte](https://github.com/jwrunge/svelte-modal/blob/main/dist/Modal.svelte)
 
 ## Implementation
-There are three ways to implement the modal:
+There are two ways to implement the modal:
 * [Including in non-Svelte applications][6]
 * [Including in your Svelte application][7]
 
