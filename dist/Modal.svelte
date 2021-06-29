@@ -74,7 +74,7 @@
 
     //Can emit close signal if set
     function bgclick() {
-        if(!bgclose) return
+        if(!bgclose || !closable || loading) return
         dispatch("close")
     }
 </script>
@@ -148,10 +148,6 @@
 
     .modal .modal-closer.modal-closer-right, .modal .modal-closer.modal-closer-top-right { right: .75rem; }
     .modal .modal-closer.modal-closer-left, .modal .modal-closer.modal-closer-top-left { left: .75rem; }
-
-    .modal .modal-inner .modal-load-container {
-        text-align: center;
-    }
 
     .modal .modal-inner .modal-load-icon {
         display: block;

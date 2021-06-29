@@ -59,13 +59,14 @@ function plugins(watchDir, loadDir, watch = false) {
 }
 
 export default [
+    //The includable Modal raw source (vanilla js)
     {
         input: 'src/Modal.svelte',
         output: {
             sourcemap: true,
             file: 'dist/modal.js',
             name: "modal",
-            format: 'iife'
+            format: 'umd'  //For browser and node
         },
         plugins: plugins("dist/", "", true),
 
@@ -73,6 +74,7 @@ export default [
             clearScreen: false
         }
     },
+    //Test page for svelte
     {
         input: 'src/svelte-test.js',
         output: {
@@ -86,4 +88,4 @@ export default [
 ]
 
 //Copy Svelte file to dist directory
-copyFileSync("src/Modal.svelte", "./Modal.svelte")
+copyFileSync("src/Modal.svelte", "dist/Modal.svelte")

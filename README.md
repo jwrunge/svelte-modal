@@ -1,5 +1,5 @@
 # Easy Modal
-This is an ***easy*** modal, written in [https://svelte.dev/](Svelte) but usable not just as a Svelte component, but in vanilla JavaScript (or any other framework you may be using, because Svelte is magic). It is intended to be:
+This is an ***easy*** modal, written in [Svelte](https://svelte.dev/) but usable not just as a Svelte component, but in vanilla JavaScript (or any other framework you may be using, because Svelte is magic). It is intended to be:
 * Quick to implement
 * Highly customizable
 * Easily stylable with a minimum of CSS
@@ -29,38 +29,56 @@ This code is provided under the MIT license, and is completely free to use and m
 
 ## Installation
 ### The JavaScript
-Install via NPM: `npm install jwrunge/svelte-modal`
+Install via NPM: `npm install @jwrunge/svelte-modal`
 
-Or include via script: `<script src="https://raw.githubusercontent.com/jwrunge/svelte-modal/main/dist/modal.js">`
+Or include via script: `<script src="path/to/modal.js">`
 
 ### The CSS
 I recommend including the foundation stylesheet as well, unless it significantly breaks your design. The foundation stylesheet is meant to be very minimal, allowing you quite a bit of control over the look and feel of your modals. See ["Styling"](#styling) below for more information.
 
 With an NPM installation, the stylesheet can be found in the node_modules directory: `<link rel='stylesheet' href='node_modules/@jwrunge/modal/dist/modalstyle.css'>`
 
-Or you can use the GitHub link: `<link rel='stylesheet' href='https://raw.githubusercontent.com/jwrunge/svelte-modal/main/dist/modalstyle.css'>`
-
 ### Direct links
 Download local copies of the code here:
-* GitHub Raw JavaScript: [modal.js](https://raw.githubusercontent.com/jwrunge/svelte-modal/main/dist/modal.js)
-* GitHub Raw CSS: [modalstyle.css](https://raw.githubusercontent.com/jwrunge/svelte-modal/main/dist/modalstyle.css)
+* GitHub JavaScript file: [modal.js](https://github.com/jwrunge/svelte-modal/blob/8ccb02f49ae62b0cfeb2800472767cd5d864ecda/dist/modal.js)
+* GitHub CSS file: [modalstyle.css](https://github.com/jwrunge/svelte-modal/blob/8ccb02f49ae62b0cfeb2800472767cd5d864ecda/dist/modalstyle.css)
+* GitHub Svelte file: [Modal.svelte]()
 
 ## Implementation
-### Vanilla / non-Svelte implemenation
-Include the modal in your Node build system: `import "@jwrunge/modal"`. This isn't necessary if you included `modal.js` via `<script>` tag.
+There are three ways to implement the modal:
+* [Including in non-Svelte applications][6]
+* [Including in your Svelte application][7]
 
-"Start" the modal in a `<script>` tag like so (`target` can be any reference to an HTML element node):
+### Non-Svelte implementation
+#### Implementation using Node.js
+Import the script. The modal assumes it will be compiled by a build system such as webpack or rollup.
 ```
-<script>
-    const modal = new modal({
-        target: document.getElementById('myElement'),
-        props: {
-            closable: true,
-            closepos: "modal-closer-right",
-            content: "<p>This is my modal!</p>"
-        }
-    })
-</script>
+import modal from '@jwrunge/modal'
+```
+
+You can now create a modal instance using `new modal()` -- see ["Instantiating"](#instantiating) below).
+
+#### Implementation using `<script>`
+Include the modal via `<script>` tag:
+```
+<script src="node_modules/@jwrunge/modal/dist/modal.js">
+```
+
+You can use the path to `modal.js` in your `node_modules` folder, the raw GitHub source linked above, or a local downloaded copy.
+
+You can now create a modal instance using `new modal()` -- see ["Instantiating"](#instantiating) below).
+
+#### Instantiating
+However you include the modal script, the following details basic usage:
+```
+const myModal = new modal({
+    target: document.getElementById('myElement'),
+    props: {
+        closable: true,
+        closepos: "modal-closer-right",
+        content: "<p>This is my modal!</p>"
+    }
+})
 ```
 
 This method uses [Svelte's client-side component API](https://svelte.dev/docs#Client-side_component_API), and you can refer to the API documentation for advanced use. In a nutshell, the `new modal()` method can take the following options:
@@ -71,29 +89,29 @@ This method uses [Svelte's client-side component API](https://svelte.dev/docs#Cl
 |props      |{}         |You can initialize modal customization properties here (properties listed in [Customization](#customization))|
 |intro      |false      |Whether or not to play the modal's appearance animation, if the modal is started in an enabled state|
 
-Customization properties can be set dynamically using `modal.$set()`:
+Customization properties can be set dynamically using `myModal.$set()`:
 ```
-modal.$set({
+myModal.$set({
     closable: false,
     loading: true
 })
 ```
 
 #### Opening and closing the modal
-To make the modal visible (open), set the customization property `visible` equal to `true`: `modal.$set({ visible: true })`. Of course, the modal can be made invisible (closed) by setting the `visible` property to `false`. Changing this property isn't necessary when implementing the modal as a Svelte component.
+To make the modal visible (open), set the customization property `visible` equal to `true`: `myModal.$set({ visible: true })`. Of course, the modal can be made invisible (closed) by setting the `visible` property to `false`. Changing this property isn't necessary when implementing the modal as a Svelte component.
 
-The modal emits a single event, `close`, called when the user clicks the `x` close button or, if enabled, the background. To bind to this event, call the `modal.$on()` function and pass "close" as the first argument:
+The modal emits a single event, `close`, called when the user clicks the `x` close button or, if enabled, the background. To bind to this event, call the `myModal.$on()` function and pass "close" as the first argument:
 ```
-modal.$on("close", function(){
-    modal.$set({ visible: false })
+myModal.$on("close", function(){
+    myModal.$set({ visible: false })
 })
 ```
 
-### Setting modal content
-Setting the modal's content is as easy as passing in a customization property to the `props` option, either during initialization or by using `modal.$set({ content: "My content" })`.
+#### Setting modal content
+Setting the modal's content is as easy as passing in a customization property to the `props` option, either during initialization or by using `myModal.$set({ content: "My content" })`.
 
 #### Destroying the modal
-You can destroy the modal instance, too, if you want... `modal.$destroy()`
+You can destroy the modal instance, too, if you want... `myModal.$destroy()`
 
 ### Svelte implementation
 Start by including the Svelte source file in your Svelte application: `import Modal from '@jwrunge/modal/Modal.svelte'`
@@ -164,6 +182,7 @@ Additional custom styling is super easy, and can be done in standard CSS in your
 |---                    |---                    |
 |.modal-backdrop        |The modal background. A `flexbox`. Contains all other elements.|
 |.modal-inner           |The inner modal div. A simple, relatively-positioned `div`.|
+|.modal-scroller        |The scrollable content `div` for overflow modal content.|
 |.modal-closer          |The close icon. Absolutely-positioned.|
 |.modal-load-icon       |The loading icon or text. Absolutely-positioned, unless `loadpos` is set to `modal-load-middle`.|
 |.modal-faded           |Content that is faded when the modal is in a loading state, if `fadeonload` is set.|
@@ -175,3 +194,5 @@ This is *not* an exaustive list of all modal classes; those can be discovered an
 [3]: #implementation
 [4]: #customization
 [5]: #styling
+[6]: #non-svelte-implementation
+[7]: #svelte-implementation
