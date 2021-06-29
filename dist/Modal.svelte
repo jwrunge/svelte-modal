@@ -12,6 +12,9 @@
     export let transinnerInOptions = {duration: 200}
     export let transinnerOutOptions = {duration: 200}
 
+    //Buttons
+    export let buttons = []
+
     //Set dynamic transitions
     let transbgFunc, transinnerFunc
 
@@ -106,6 +109,14 @@
                 {:else}
                     <slot></slot>
                 {/if}
+                <!-- Buttons -->
+                {#if buttons.length}
+                    <div class="buttons">
+                        {#each buttons as button}
+                            <button class={button.class} on:click={()=> dispatch(button.event)}>{button.text}</button>
+                        {/each}
+                    </div>
+                {/if}
             </div> <!-- end .scroller -->
         </div> <!-- end .inner -->
     </div>  <!-- end .modal, .backdrop -->
@@ -174,4 +185,8 @@
     }
 
     .modal .modal-inner .modal-faded { opacity: .5; }
+
+    .buttons button + button {
+        margin-left: 1em;
+    }
 </style>
