@@ -1,6 +1,6 @@
 {
   "name": "@jwrunge/modal",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "A simple, configurable modal system with user inputs written in Svelte. Use it as a svelte component or in a vanilla JS module script!",
   "main": "dist/modal.js",
   "scripts": {
@@ -15,10 +15,11 @@
     "modal",
     "interactive",
     "svelte",
-    "vanilla"
+    "vanilla",
+    "configurable"
   ],
   "author": "Jake Runge",
-  "license": "ISC",
+  "license": "MIT",
   "bugs": {
     "url": "https://github.com/jwrunge/svelte-modal/issues"
   },
