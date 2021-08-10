@@ -116,7 +116,7 @@ Setting the modal's content is as easy as passing in a customization property to
 You can destroy the modal instance, too, if you want... `myModal.$destroy()`
 
 ### Svelte implementation
-Start by including the Svelte source file in your Svelte application: `import Modal from '@jwrunge/modal/Modal.svelte'`
+Start by including the Svelte source file in your Svelte application: `import Modal from '@jwrunge/dist/Modal.svelte'`
 
 If you are a Svelte developer, you probably already know how Svelte components work. Once imported, you can pass or bind any props (listed in [Customization](#customization)) and connect functions to the `close` event using `on:close={yourFunction}`. See the example below.
 
