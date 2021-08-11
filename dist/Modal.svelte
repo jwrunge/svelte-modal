@@ -142,11 +142,11 @@
         box-sizing: border-box;
     }
         
-    .modal .modal-inner.modal-wide {
+    .modal .modal-inner.wide {
         width: 60rem;
     }
 
-    .modal .modal-inner.modal-full {
+    .modal .modal-inner.full {
         width: 95%;
     }
 
