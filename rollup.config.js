@@ -8,9 +8,7 @@ import css from 'rollup-plugin-css-only'
 import serve from 'rollup-plugin-serve-proxy'
 import babel from "@rollup/plugin-babel"
 
-const fs = require('fs')
-const writeFileSync = fs.writeFileSync
-const copyFileSync = fs.copyFileSync
+const pkg = require("./package.json")
 
 const prod = !process.env.ROLLUP_WATCH
 const babelSettings = {
@@ -25,11 +23,7 @@ function plugins(watchDir, loadDir, watch = false) {
             preprocess: sveltePreprocess(),
         }),
 
-        css({
-            output: (styles)=> {
-                writeFileSync("dist/modalstyle.css", styles)
-            },
-        }),
+        css({output: "modal.css"}),
 
         resolve({ 
             browser: true,
@@ -62,30 +56,21 @@ export default [
     //The includable Modal raw source (vanilla js)
     {
         input: 'src/Modal.svelte',
-        output: {
-            sourcemap: true,
-            file: 'dist/modal.js',
-            name: "modal",
-            format: 'umd'  //For browser and node
-        },
+        output: [
+            {
+                file: pkg.module,
+                format: 'es'
+            },
+            {
+                file: pkg.main,
+                name: "Modal",
+                format: 'umd'
+            },
+        ],
         plugins: plugins("dist/", "", true),
 
         watch: {
             clearScreen: false
         }
-    },
-    //Test page for svelte
-    {
-        input: 'src/svelte-test.js',
-        output: {
-            sourcemap: true,
-            file: './svelte-test.js',
-            name: "modal",
-            format: 'iife'
-        },
-        plugins: plugins("dist/", "", false),
     }
 ]
-
-//Copy Svelte file to dist directory
-copyFileSync("src/Modal.svelte", "dist/Modal.svelte")
